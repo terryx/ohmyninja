@@ -7,8 +7,23 @@
      - g++
      - make
 
+ - name: Check if nodejs is installed
+   command: node -v
+   register: check_nodejs
+
  - name: Get latest nodejs repo
-   shell: curl -sL https://deb.nodesource.com/setup | sudo bash -
+   latest: curl -sL https://deb.nodesource.com/setup | sudo bash -
+   when: check_nodejs.stdout.find('no packages found') != -1
 
  - name: Install nodejs
    apt: name=nodejs state=latest
+
+ - name: Install npm packages globally
+   action: npm name={{ item }} state=present global=yes
+   tags: nodejs_global_packages
+   with_items:
+     - bower
+
+#PM2 has problem running on root
+ - name: Install pm2
+   command: sudo npm install pm2 -g --unsafe-perm

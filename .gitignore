@@ -7,7 +7,8 @@ composer.lock
 .DS_Store
 Thumbs.db
 .idea
-public/components
+.vagrant
+token
 
 #Configuration files
 ansible/host_vars/production*

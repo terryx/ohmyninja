@@ -1,0 +1,10 @@
+---
+
+ - name: Create usergroup named ninja
+   group: name=ninja state=present 
+
+ - name: Add user ninja
+   user: name=ninja groups=ninja
+
+ - name: Make home directory for ninja
+   file: /home/ninja state=directory group=ninja

@@ -1,0 +1,5 @@
+---
+ - hosts: "{{ hosts }}"
+   tasks:
+    - name: Git pull
+      git: repo=git@github.com:terryx/ohmyninja.git dest=/home/ninja/node version={{ version }}

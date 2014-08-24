@@ -1,0 +1,3 @@
+---
+ - name: Create usergroup named ninja
+   group: name=ninja state=present 
