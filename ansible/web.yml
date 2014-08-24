@@ -1,0 +1,7 @@
+---
+ - hosts: "{{ hosts }}"
+   sudo: yes
+   roles:
+    - role: common
+    - role: nginx
+    - role: nodejs

@@ -1,0 +1,14 @@
+---
+ - name: Install nodejs pre packages
+   action: apt pkg={{ item }}
+   tags: nodejs
+   with_items:
+     - python-software-properties
+     - g++
+     - make
+
+ - name: Get latest nodejs repo
+   shell: curl -sL https://deb.nodesource.com/setup | sudo bash -
+
+ - name: Install nodejs
+   apt: name=nodejs state=latest

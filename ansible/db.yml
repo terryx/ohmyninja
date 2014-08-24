@@ -1,0 +1,6 @@
+---
+ - hosts: "{{ hosts }}"
+   sudo: yes
+   roles:
+    - role: common
+    - role: mysql

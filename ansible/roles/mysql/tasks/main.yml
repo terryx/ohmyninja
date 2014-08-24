@@ -1,0 +1,19 @@
+---
+ - name: DB installations
+   action: apt pkg={{ item }}
+   tags: db
+   with_items:
+     - mysql-server
+     - mysql-client
+     - python-mysqldb
+
+ - name: setup my.cnf file
+   copy: src={{ env }}.cnf dest=/etc/mysql/my.cnf mode=0640
+   register: my_cnf
+
+ - name: reload mysql if it changed
+   service: name=mysql state=reloaded enabled=yes
+   when: my_cnf.changed
+
+ - name: Create a new database with name 'ninjata'
+   mysql_db: name=ninjata state=present

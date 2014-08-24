@@ -1,0 +1,10 @@
+---
+# Only run "update_cache=yes" if the last one is more than 3600 seconds ago
+ - name: Apt-get update
+   apt: update_cache=yes cache_valid_time=3600
+
+ - name: Common packages
+   action: apt pkg={{ item }}
+   tags: common
+   with_items:
+     - curl

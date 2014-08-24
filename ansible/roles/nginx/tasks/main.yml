@@ -1,0 +1,19 @@
+---
+ - name: Install nginx
+   apt: name=nginx
+
+ - name: setup site enabled file
+   copy: src={{ env }}_default dest=/etc/nginx/sites-enabled/default
+   register: nginx_settings
+
+ - name: setup site available file
+   copy: src={{ env }}_default dest=/etc/nginx/sites-available/default
+   register: nginx_settings
+
+ - name: setup conf file
+   copy: src={{ env }}_nginx.conf dest=/etc/nginx/nginx.conf
+   register: nginx_settings
+
+ - name: restart nginx if it changed
+   service: name=nginx state=reloaded enabled=yes
+   when: nginx_settings.changed
