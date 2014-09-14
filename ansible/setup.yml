@@ -1,0 +1,9 @@
+---
+ - hosts: "{{ hosts }}"
+   sudo: yes
+   roles:
+    - common
+    - user
+    - nginx
+    - nodejs
+    - github

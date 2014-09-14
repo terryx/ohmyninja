@@ -1,0 +1,18 @@
+---
+ - name: Install npm packages globally
+   action: npm name={{ item }} state=present global=yes
+   tags: nodejs_global_packages
+   with_items:
+     - bower
+     - sails
+     - grunt
+
+ - name: git pull
+   git: repo={{ repo }}
+        dest=/var/www-data/node
+        accept_hostkey=yes
+        key_file=/home/{{ user }}/.ssh/id_rsa
+        version={{ branch }}
+
+ - name: Install npm local packages
+   npm: path=/var/www-data/node

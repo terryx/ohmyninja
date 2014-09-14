@@ -7,13 +7,9 @@
      - mysql-client
      - python-mysqldb
 
- - name: setup my.cnf file
-   copy: src={{ env }}.cnf dest=/etc/mysql/my.cnf mode=0640
-   register: my_cnf
+ - name: setup config file
+   copy: src=config.cnf dest=/etc/mysql/my.cnf mode=0640
+   notify: restart mysql
 
- - name: reload mysql if it changed
-   service: name=mysql state=reloaded enabled=yes
-   when: my_cnf.changed
-
- - name: Create a new database with name 'ninjata'
-   mysql_db: name=ninjata state=present
+ - name: Create a new database
+   mysql_db: name={{ database }} state=present

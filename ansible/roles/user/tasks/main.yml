@@ -1,0 +1,9 @@
+---
+ - name: Create usergroup
+   group: name={{ user }} state=present
+
+ - name: Create user along with home dir
+   user: name={{ user }} groups={{ user }},www-data createhome=yes home=/home/{{ user }}
+
+ - name: Copy id_rsa to home ssh
+   copy: src=id_rsa dest=/home/{{ user }}/.ssh/ mode=400

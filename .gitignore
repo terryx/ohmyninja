@@ -1,14 +1,9 @@
-/bootstrap/compiled.php
-/vendor
-composer.phar
-composer.lock
-.env.*.php
-.env.php
 .DS_Store
 Thumbs.db
 .idea
 .vagrant
-token
+npm-debug.log
 
 #Configuration files
-ansible/host_vars/production*
+ansible/host_vars/development
+id_rsa
