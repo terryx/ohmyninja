@@ -9,10 +9,10 @@
 
  - name: git pull
    git: repo={{ repo }}
-        dest=/var/www-data/node
+        dest=/var/www-data
         accept_hostkey=yes
         key_file=/home/{{ user }}/.ssh/id_rsa
         version={{ branch }}
 
  - name: Install npm local packages
-   npm: path=/var/www-data/node
+   npm: path=/var/www-data/app

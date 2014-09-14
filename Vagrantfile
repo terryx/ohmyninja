@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
      config.vm.network "private_network", ip: "192.168.33.10"
 
-     config.vm.synced_folder "app", "/var/www-data/node"
+     config.vm.synced_folder "app", "/var/www-data/app"
 
         config.vm.provision "ansible" do |ansible|
          
